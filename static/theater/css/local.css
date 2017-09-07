@@ -1,0 +1,44 @@
+.floor {
+    background: #aeaeae;
+    width: 100%;
+    height: 330px;
+    position: relative;
+    margin: 0 auto;
+}
+
+.loading {
+    background: rgba(255, 255, 255, .4) url(../img/bx_loader.gif) no-repeat center center;
+    padding: 50px;
+    border-radius: 10px;
+    position: fixed;
+    left: 20px;
+    top: 20px;
+    z-index: 9876;
+    box-shadow: 0 0 3px rgba(0, 0, 0, .3);
+    display: none;
+}
+
+.loading.show {
+    display: block;
+}
+
+.seat {
+    width: 20px;
+    height: 20px;
+    background: #fff;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.hovering {
+    background-color: #ae59b3;
+}
+
+.tentative {
+    background-color: #96c131;
+}
+
+.booked {
+    background-color: red;
+}

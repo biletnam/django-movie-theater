@@ -1,0 +1,40 @@
+{% extends "theater/layouts/default.html" %}
+
+{% block content %}
+
+<div class="section section-breadcrumbs">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>Buy tickets!</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <div class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    {% if not user or  user.is_anonymous %}
+                        {% include 'theater/layouts/partials/mustlogin.html' %}
+                    {% else %}
+                        <form action="{% url 'theater-show' %}" method="get">
+                            <label>Select the movie</label>
+                            <select class="form-control" name="movie">
+                                <option>Select movie</option>
+                                {% for item in repertoire %}
+                                    <option value="{{ item.id }}">{{ item.name }}</option>
+                                {% endfor %}
+                            </select>
+                            <input type="submit" class="btn">
+                        </form>
+
+
+                    {% endif %}
+                </div>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}

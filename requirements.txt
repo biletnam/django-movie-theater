@@ -1,0 +1,6 @@
+Django
+psycopg2
+social-auth-app-django
+pusher
+django-celery
+django-request

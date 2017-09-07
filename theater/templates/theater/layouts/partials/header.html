@@ -1,0 +1,25 @@
+<header class="navbar navbar-inverse navbar-fixed-top" role="banner">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="index.html">Buy tickets</a>
+        </div>
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li {% if request.resolver_match.url_name == 'index' %} class="active" {% endif %}><a href="{% url 'index' %}">Home</a>
+                {% if not user or  user.is_anonymous %}
+                <li><a href="{% url 'social:begin' 'facebook' %}">Login with Facebook</a>
+                {% else %}
+                <li><a href="{% url 'logout' %}">Logout {{ user.username }} </a>
+                <li{% if request.resolver_match.url_name == 'theater-history' %} class="active" {% endif %}><a href="{% url 'theater-history' %}">History</a>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</header>
+

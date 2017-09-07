@@ -1,0 +1,71 @@
+{% extends "theater/layouts/default.html" %}
+
+{% block content %}
+
+<div class="section section-breadcrumbs">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>Buy tickets for {{ movie.name}}!</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="section">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <label>How many tickets will you purchase?</label>
+                <select name="seatcount" class="form-control seatcount">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+                <br>
+                <label>Select seats</label>
+                <div class="floor">
+                    {% for item in seats %}
+                    <div class="seat seat_{{ item.x }}_{{ item.y }} seat_id_{{ item.id }}" data-id="{{ item.id }}"
+                         data-x="{{ item.x }}"
+                         data-y="{{ item.y }}"></div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        <a href="{% url 'theater-booked' %}?movie={{ movie.id }}" class="btn confirm-booking">Confirm booking</a>
+
+    </div>
+</div>
+<script src="https://js.pusher.com/4.0/pusher.min.js"></script>
+<script>
+    var MOVIE_ID = {{ movie.id }};
+    var TENTATIVE_URL = "{% url 'rest-tentative' %}";
+    var UNTENTATIVE_URL = "{% url 'rest-untentative' %}";
+    var BOOKING_URL = "{% url 'rest-book' %}";
+    var PING_URL = "{% url 'rest-ping' %}";
+</script>
+
+
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">About to make a booking</h4>
+            </div>
+            <div class="modal-body">
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary">Proceed</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

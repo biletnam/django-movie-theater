@@ -1,0 +1,51 @@
+{% extends "theater/layouts/default.html" %}
+
+{% block content %}
+
+<div class="section section-breadcrumbs">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>History of purchases</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="section">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                    {% regroup purchases by group as puchases_list %}
+                    {% for purchase in puchases_list %}
+                    <div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="headingOne">
+                            <h4 class="panel-title">
+                                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne"
+                                   aria-expanded="true" aria-controls="collapseOne">
+                                    # <strong>{{ purchase.grouper }}</strong> |
+                                    {% with purchase.list|first as first_doc %}{{ first_doc.created_at }}{% endwith %} |
+                                    {% with purchase.list|first as first_doc %}{{ first_doc.get_movie.name }}{% endwith %}
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel"
+                             aria-labelledby="headingOne">
+                            <div class="panel-body">
+                                selected seats:
+                                {% for seat in purchase.list %}
+                                {{ seat.seat_id }}
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

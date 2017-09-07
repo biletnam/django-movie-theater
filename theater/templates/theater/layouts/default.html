@@ -1,0 +1,37 @@
+{% load static %}<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:400,700,600,800' rel='stylesheet' type='text/css'>
+    <script src="//use.edgefonts.net/bebas-neue.js"></script>
+    <link rel="stylesheet" href="{% static 'theater/css/bootstrap.min.css' %}" >
+    <link rel="stylesheet" href="{% static 'theater/css/main.css' %}">
+    <link  rel="stylesheet" href="{% static 'theater/css/custom.css' %}">
+    <link  rel="stylesheet" href="{% static 'theater/css/local.css' %}">
+
+    <link rel="stylesheet" href="{% static 'theater/css/icomoon-social.css' %}">
+    <link rel="stylesheet" href="{% static 'theater/css/font-awesome.min.css' %}">
+    <title>{% block title %}Movie Theater{% endblock %}</title>
+</head>
+
+<body>
+<div class="loading"></div>
+
+    {% include 'theater/layouts/partials/header.html' %}
+
+            {% block content %}{% endblock %}
+
+    {% include "theater/layouts/partials/footer.html" %}
+
+    <script src="{% static 'theater/js/jquery-1.9.1.min.js' %}"></script>
+    <script src="{% static 'theater/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'theater/js/jquery.easing.min.js' %}"></script>
+    <script src="{% static 'theater/js/scrolling-nav.js' %}"></script>
+    <script src="{% static 'theater/js/s.js' %}"></script>
+</body>
+</html>
